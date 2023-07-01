@@ -1,0 +1,117 @@
+:root {
+    height: 100%;
+    width: 100%;
+
+    background-color: #282c34;
+    color: white;
+}
+
+/* *** Elements *** */
+li {
+    list-style-type: none;
+}
+
+/* *** Classes *** */
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 10s linear;
+        margin: 2rem;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.alphabet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    align-items: center;
+}
+
+.alphabet ul {
+    display: grid;
+    grid-template-columns: repeat(7, 0fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.guessContainer {
+    display: flex;
+}
+
+.guessLetterBox {
+    width: 5rem;
+    height: 5rem;
+
+    font-size: 4rem;
+    line-height: 4rem;
+
+    border: white 2px solid;
+    border-radius: .5rem;
+    margin: 1rem;
+
+    background-color: #282c34;
+}
+
+.letters {
+    width: 5rem;
+    height: 5rem;
+
+    font-size: 4rem;
+    line-height: 4rem;
+
+    border: white 2px solid;
+    border-radius: .5rem;
+    margin: 1rem;
+
+    color: white;
+    background-color: #282c34;
+}
+
+.letters:hover {
+    cursor: pointer;
+
+    color: #282c34;
+    background-color: white;
+}
+
+.spelling-input {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    align-items: center;
+}
