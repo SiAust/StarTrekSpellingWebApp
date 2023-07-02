@@ -67,6 +67,47 @@ li {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
+/* Button styling courtesy of CSS-Tricks https://css-tricks.com/overriding-default-button-styles/ */
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #0069ed;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out,
+    transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+/* *** */
+
+.characters {
+    margin: 2rem;
+}
+
+.characters select {
+    margin: 0 1rem 0 1rem;
+}
 
 .guessContainer {
     display: flex;
@@ -87,8 +128,8 @@ li {
 }
 
 .letters {
-    width: 5rem;
-    height: 5rem;
+    width: 10rem;
+    height: fit-content;
 
     font-size: 4rem;
     line-height: 4rem;
@@ -96,16 +137,55 @@ li {
     border: white 2px solid;
     border-radius: .5rem;
     margin: 1rem;
+    padding: 0;
 
     color: white;
     background-color: #282c34;
 }
 
 .letters:hover {
-    cursor: pointer;
+    color: white;
+    background-color: #0069ed;
+    border: #0069ed 2px solid;
+}
 
-    color: #282c34;
-    background-color: white;
+.letters button {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+
+    width: 100%;
+}
+
+.letters svg {
+    font-size: 1rem;
+    color: white;
+
+    margin: 0 auto;
+}
+
+.letters-header {
+    position: relative;
+
+    height: 2rem;
+    font-size: 2rem;
+    text-align: left;
+}
+
+.letters-header span {
+    position: absolute;
+    top: -1rem;
+    left: .2rem;
+}
+
+.letters-footer {
+    display: flex;
+
+    height: 4rem;
+    background-color: #282c34;
+    border-radius: 0 0 .5rem .5rem;
+
+    align-items: center;
 }
 
 .spelling-input {
