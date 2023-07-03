@@ -3,21 +3,27 @@ import logo from './kirk.png';
 import './App.css';
 
 import Letter from './Letter.js';
+import CharacterSelect from "./CharacterSelect";
 
 function App() {
 
     const [crew, setCrew] = useState([]);
-    const [selectedCrewPerson, setSelectedCrewPerson] = useState({firstName: "Simon"});
+    const [selectedCrewPerson, setSelectedCrewPerson] = useState({firstName: "Simon", lastName: "Aust"});
 
     const [loading, setLoading] = useState(false);
     const [alphabet, setAlphabet] = useState([]);
 
     const [userGuess, setUserGuess] = useState([]);
 
-    function handleClick(letter) {
+    function letterClickHandler(letter) {
         setUserGuess((preArray) => [...preArray, letter])
         // console.log(`userGuess ${userGuess}`)
         // console.log(`User clicked ${letter}`)
+    }
+
+    function selectClickHandler(crew) {
+        console.log(`Select clicked: ${crew.firstName} ${crew.lastName} chosen`)
+        setSelectedCrewPerson(crew);
     }
 
     useEffect(() => {
@@ -53,18 +59,24 @@ function App() {
             </header>}
 
             {!loading && <div>
-                <div className="characters">
-                    <label for="characters">Choose a character:</label>
-                    <select name="characters" id="characters">
-                        {crew.map((crewPerson, index) =>
-                            <option key={index} value={crewPerson.lastName}>{crewPerson.lastName}</option>)}
-                    </select>
-                </div>
-
+                <CharacterSelect crew={crew} handleClick={selectClickHandler} />
                 <div className="spelling-input">
                     <div className="guessContainer">
+                        {selectedCrewPerson.lastName.split('')
+                            .map((char, index) => <div className="guessLetterBox">{char}</div>)}
+                        <div className="guessLetterBox">,</div>
+                    </div>
+                    <div className="guessContainer">
                         {selectedCrewPerson.firstName.split('')
-                            .map((char, index) => <div className="guessLetterBox">{userGuess[index]}</div>)}
+                            .map((char, index) =>
+                                // <div key={index} className="guessLetterBox">{userGuess[index]}</div>)}
+                            <div key={index} className="guessLetterBox"> X </div>)}
+                        {(selectedCrewPerson.middleName !== null) &&
+                            <div className="flex">
+                                <div className="guessLetterBox"></div>
+                                <div className="guessLetterBox">{selectedCrewPerson.middleName.charAt(0).toUpperCase()}</div>
+                            </div>
+                        }
                     </div>
                 </div>
 
@@ -75,8 +87,7 @@ function App() {
                             <Letter
                                 index={index}
                                 letter={letter}
-                                handleClick={() => handleClick(letter)}>
-                            </Letter>
+                                handleClick={() => letterClickHandler(letter)} />
                         </li>)}
                     </ul>
                 </div>

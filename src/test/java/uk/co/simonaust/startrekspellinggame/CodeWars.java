@@ -1,7 +1,9 @@
 package uk.co.simonaust.startrekspellinggame;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CodeWars {
 
@@ -14,20 +16,13 @@ public class CodeWars {
 class Training {
 
     public void run() {
-        System.out.println(getCount("abracadabra"));
-        System.out.println(getCount("pear tree"));
-        System.out.println(getCount(""));
-        System.out.println(getCount("o a kak ushakov lil vo kashu kakao"));
+        System.out.println(number(List.of("a", "b", "c")));
+        System.out.println(number(List.of()));
     }
 
-    public static int getCount(String str) {
-        return (int) str.toLowerCase().chars().filter(Training::vowelPredicate).count();
+    public static List<String> number(List<String> lines) {
+        return IntStream.range(0, lines.size()).mapToObj(i -> (i + 1) + ": " + lines.get(i)).collect(Collectors.toList());
     }
 
-    private static boolean vowelPredicate(int i) {
-        return switch (i) {
-            case 97, 101, 105, 111, 117 -> true;
-            default -> false;
-        };
-    }
+
 }
