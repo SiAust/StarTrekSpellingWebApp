@@ -1,9 +1,18 @@
 :root {
+    --dark-blue: #282c34;
+    --light-blue: #0053ba;
+
+    font-size: 16px;
+
     height: 100%;
     width: 100%;
 
-    background-color: #282c34;
+    background-color: var(--dark-blue);
     color: white;
+
+    padding: 0;
+    margin: 0;
+
 }
 
 /* *** Elements *** */
@@ -30,7 +39,7 @@ li {
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: var(--dark-blue);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -67,14 +76,15 @@ li {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
+
 /* Button styling courtesy of CSS-Tricks https://css-tricks.com/overriding-default-button-styles/ */
 button {
     display: inline-block;
     border: none;
-    padding: 1rem 2rem;
+    /*padding: 1rem 2rem;*/
     margin: 0;
     text-decoration: none;
-    background: #0069ed;
+    background: var(--dark-blue);
     color: #ffffff;
     font-family: sans-serif;
     font-size: 1rem;
@@ -88,17 +98,18 @@ button {
 
 button:hover,
 button:focus {
-    background: #0053ba;
+    background: var(--light-blue);
 }
 
 button:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
+    /*outline: 1px solid #fff; TODO ARIA */
+    /*outline-offset: -4px; TODO ARIA */
 }
 
 button:active {
-    transform: scale(0.99);
+    /*transform: scale(0.99);*/
 }
+
 /* *** */
 
 .characters {
@@ -108,7 +119,9 @@ button:active {
 .characters select {
     margin: 0 1rem 0 1rem;
 }
-
+.flex {
+    display: flex;
+}
 .guessContainer {
     display: flex;
 }
@@ -128,8 +141,10 @@ button:active {
 }
 
 .letters {
-    width: 10rem;
-    height: fit-content;
+    position: relative;
+
+    width: 5rem;
+    height: 5rem;
 
     font-size: 4rem;
     line-height: 4rem;
@@ -146,16 +161,16 @@ button:active {
 .letters:hover {
     color: white;
     background-color: #0069ed;
-    border: #0069ed 2px solid;
+    /*border: #0069ed 2px solid;*/
 }
 
-.letters button {
-    cursor: pointer;
-    font-size: 2rem;
-    color: white;
+/*.letters button {*/
+/*    cursor: pointer;*/
+/*    font-size: 2rem;*/
+/*    color: white;*/
 
-    width: 100%;
-}
+/*    width: 100%;*/
+/*}*/
 
 .letters svg {
     font-size: 1rem;
@@ -164,27 +179,49 @@ button:active {
     margin: 0 auto;
 }
 
-.letters-header {
-    position: relative;
-
-    height: 2rem;
-    font-size: 2rem;
-    text-align: left;
+.letters-char-spans {
+    margin: auto;
+    width: 50%;
 }
 
-.letters-header span {
+.letters-index {
     position: absolute;
-    top: -1rem;
+    top: .1rem;
     left: .2rem;
+
+    font-size: 1rem;
+}
+
+.letters-content {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+
+    border-radius: .5rem;
+    outline: white 2px solid;
+
+    height: 100%;
+    width: 100%;
+
+    position: relative;
+
 }
 
 .letters-footer {
     display: flex;
 
-    height: 4rem;
-    background-color: #282c34;
-    border-radius: 0 0 .5rem .5rem;
+    height: 2rem;
+    width: 4rem;
 
+    margin: auto;
+
+    /*background-color: #282c34;*/
+    border-radius: 0 0 .5rem .5rem;
+    border: 2px solid white;
+    /*border-top: 0;*/
     align-items: center;
 }
 
