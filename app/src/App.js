@@ -8,7 +8,8 @@ import CharacterSelect from "./CharacterSelect";
 function App() {
 
     const [crew, setCrew] = useState([]);
-    const [selectedCrewPerson, setSelectedCrewPerson] = useState({firstName: "Simon", lastName: "Aust"});
+    const [selectedCrewPerson, setSelectedCrewPerson] =
+        useState({firstName: "Simon", lastName: "Aust", middleName: "Anthony"});
 
     const [loading, setLoading] = useState(false);
     const [alphabet, setAlphabet] = useState([]);

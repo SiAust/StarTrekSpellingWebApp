@@ -15,6 +15,13 @@
 
 }
 
+html {
+    background-image: url("./resources/starfleet.svg");
+    background-repeat: repeat;
+    background-size: 10% 10%;
+    background-color: #282c34;
+}
+
 /* *** Elements *** */
 li {
     list-style-type: none;
