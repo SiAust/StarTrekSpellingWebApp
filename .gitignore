@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+src/test/java/uk/co/simonaust/startrekspellinggame/CodeWars1.java
+app/src/resources/starfleet1.svg
+app/src/resources/starfleet12.svg

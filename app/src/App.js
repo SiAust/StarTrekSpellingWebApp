@@ -4,6 +4,8 @@ import './App.css';
 
 import Letter from './Letter.js';
 import CharacterSelect from "./CharacterSelect";
+import GuessInputMarker from "./GuessInputMarker";
+import GuessLetterBox from "./GuessLetterBox";
 
 function App() {
 
@@ -15,15 +17,30 @@ function App() {
     const [alphabet, setAlphabet] = useState([]);
 
     const [userGuess, setUserGuess] = useState([]);
+    const [correctAnswer, setCorrectAnswer] = useState(false);
+    const [falseAnswer, setFalseAnswer] = useState(false);
 
-    function letterClickHandler(letter) {
-        setUserGuess((preArray) => [...preArray, letter])
+    function letterClickHandler(userGuessStr) {
+        // setUserGuess((preArray) => [...preArray, letter])
         // console.log(`userGuess ${userGuess}`)
-        // console.log(`User clicked ${letter}`)
+        console.log(`User clicked ${userGuessStr}`)
+        console.log(`userGuess.length:${userGuess.length}`)
+        console.log(`selectedCrewPerson.firstName.charAt(userGuess.length):${selectedCrewPerson.firstName.charAt(userGuess.length)}`)
+        let crewPersonLetter = selectedCrewPerson.firstName.charAt(userGuess.length);
+        if (crewPersonLetter.toLowerCase() === userGuessStr) {
+            console.log("User guess was correct, placing letter")
+            console.log(userGuess)
+            setUserGuess(prevState => [...prevState, crewPersonLetter])
+            setCorrectAnswer(true)
+        } else {
+            setFalseAnswer(true)
+            setTimeout(() => setFalseAnswer(false), 1000);
+        }
     }
 
     function selectClickHandler(crew) {
         console.log(`Select clicked: ${crew.firstName} ${crew.lastName} chosen`)
+        setUserGuess([]);
         setSelectedCrewPerson(crew);
     }
 
@@ -60,7 +77,7 @@ function App() {
             </header>}
 
             {!loading && <div>
-                <CharacterSelect crew={crew} handleClick={selectClickHandler} />
+                <CharacterSelect crew={crew} handleClick={selectClickHandler}/>
                 <div className="spelling-input">
                     <div className="guessContainer">
                         {selectedCrewPerson.lastName.split('')
@@ -70,12 +87,32 @@ function App() {
                     <div className="guessContainer">
                         {selectedCrewPerson.firstName.split('')
                             .map((char, index) =>
-                                // <div key={index} className="guessLetterBox">{userGuess[index]}</div>)}
-                            <div key={index} className="guessLetterBox"> X </div>)}
+                                <GuessLetterBox
+                                    index={index}
+                                    character={userGuess[index] || null}
+                                    cursor={!userGuess[index] && true}
+                                    cursorBlink={!userGuess[index] && index === userGuess.length}
+                                    correctAnswer={correctAnswer && userGuess[index]}
+                                    falseAnswer={falseAnswer && index === userGuess.length}
+                                />)}
+
                         {(selectedCrewPerson.middleName !== null) &&
                             <div className="flex">
-                                <div className="guessLetterBox"></div>
-                                <div className="guessLetterBox">{selectedCrewPerson.middleName.charAt(0).toUpperCase()}</div>
+                                <GuessLetterBox index={null}
+                                                character={null}
+                                                cursor={false}
+                                                cursorBlink={false}
+                                                correctAnswer={false}
+                                                falseAnswer={false}/>
+                                <GuessLetterBox
+                                    index={null}
+                                    character={selectedCrewPerson.middleName.charAt(0).toUpperCase()}
+                                    cursor={false}
+                                    cursorBlink={false}
+                                    correctAnswer={false}
+                                    falseAnswer={false}
+                                />
+
                             </div>
                         }
                     </div>
@@ -88,7 +125,7 @@ function App() {
                             <Letter
                                 index={index}
                                 letter={letter}
-                                handleClick={() => letterClickHandler(letter)} />
+                                handleClick={() => letterClickHandler(letter)}/>
                         </li>)}
                     </ul>
                 </div>
