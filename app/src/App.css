@@ -126,14 +126,18 @@ button:active {
 .characters select {
     margin: 0 1rem 0 1rem;
 }
+
 .flex {
     display: flex;
 }
+
 .guessContainer {
     display: flex;
 }
 
 .guessLetterBox {
+    position: relative;
+
     width: 5rem;
     height: 5rem;
 
@@ -145,6 +149,25 @@ button:active {
     margin: 1rem;
 
     background-color: #282c34;
+}
+
+.correctAnswer {
+    animation: backgroundFadeIn 1s forwards;
+}
+
+@keyframes backgroundFadeIn {
+    0% {background-color: #282c34;}
+    100% {background-color: green;}
+}
+
+.falseAnswer {
+    animation: backgroundFadeInOut 1s forwards;
+}
+
+@keyframes backgroundFadeInOut {
+    0% {background-color: #282c34;}
+    50% {background-color: darkred;}
+    100% {background-color: #282c34;}
 }
 
 .letters {
@@ -238,4 +261,34 @@ button:active {
 
     width: 100%;
     align-items: center;
+}
+
+.underscoreCursor {
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+
+    width: 4rem;
+    height: .5rem;
+
+    border-radius: .1rem;
+
+    background-color: white;
+
+}
+
+.blink {
+    animation: fadeInOut 1s infinite;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 100%
+    }
+    50% {
+        opacity: 0
+    }
+    100% {
+        opacity: 100%
+    }
 }
